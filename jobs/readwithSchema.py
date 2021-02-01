@@ -15,9 +15,12 @@ spark_builder = (
 
 spark = spark_builder.getOrCreate()
 
-data = spark.read.csv(
-    "file:////Users/nithya/PycharmProjects/PyFlow/tests/test_data/sales/boston_small.csv",
-    header='true', schema=boston_schema)
+# data = spark.read.csv(
+#     "file:////Users/nithya/PycharmProjects/PyFlow/tests/test_data/sales/boston_small.csv",
+#     header='true', schema=boston_schema)
+
+data = spark.read.schema(boston_schema).option("header", "true").csv("file:////Users/nithya/PycharmProjects/PyFlow"
+                                                                     "/tests/test_data/sales/boston_small.csv")
 
 data.printSchema()
 
